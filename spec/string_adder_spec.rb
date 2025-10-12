@@ -7,4 +7,12 @@ RSpec.describe StringAdder do
         expect(StringAdder.add("")).to eq(0)
       end
     end
+    
+    context "when given a single number" do
+      it "returns that number" do
+        expect(StringAdder.add("5")).to eq(5)
+      end
+    end
+  end
+  
 end
