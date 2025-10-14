@@ -10,8 +10,14 @@ class StringAdder
     end
 
     if input.start_with?("//")
-      delimiter, numbers_str = input[2..].split("\n", 2)
-      numbers = numbers_str.split(delimiter).map(&:to_i).reject { |n| n > 1000 }
+      input = input[2..]
+      delimiters, numbers_str = input.split("\n", 2)
+      if delimiters.start_with?("[") && delimiters.end_with?("]")
+        delimiters = delimiters.scan(/\[[^\]]+\]/).map{|a| a[1..-2]}
+      else
+        delimiters = [delimiters]
+      end
+      numbers = numbers_str.split(Regexp.union(*delimiters)).map(&:to_i).reject { |n| n > 1000 }
       return numbers.sum
     end
 

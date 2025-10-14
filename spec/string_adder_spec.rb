@@ -59,7 +59,22 @@ RSpec.describe StringAdder do
       context "separated by custom delimiter" do
         [
           ["//;\n1;2;3", 6],
+          ["//||\n31||23||12||17||34||4||9", 130],
           ["//|\n31|23|12|17|34|4|9", 130]
+        ].each do |input, expected|
+          context "given '#{input}'" do
+            it "returns #{expected}" do
+              expect(StringAdder.add(input)).to eq(expected)
+            end
+          end
+        end
+      end
+
+      context "separated by custom delimiters of any length" do
+        [
+          ["//[;;;]\n1;;;2;;;3", 6],
+          ["//[||]\n31||23||12||17||34||4||9", 130],
+          ["//[**][&&&][%]\n31&&&23%12**17%34%4&&&9", 130]
         ].each do |input, expected|
           context "given '#{input}'" do
             it "returns #{expected}" do
