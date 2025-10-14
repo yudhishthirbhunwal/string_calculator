@@ -75,6 +75,13 @@ RSpec.describe StringAdder do
           expect { StringAdder.add("1,-2,-5,3") }.to raise_error(ArgumentError, "negatives not allowed: -2, -5")
         end
       end
+
+      context 'when given numbers greater than 1000' do
+        it 'ignores them' do
+          expect(StringAdder.add("2,1001")).to eq(2)
+          expect(StringAdder.add("1001,1002,1003,4")).to eq(4)
+        end
+      end
     end
   end
 

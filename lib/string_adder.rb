@@ -11,11 +11,11 @@ class StringAdder
 
     if input.start_with?("//")
       delimiter, numbers_str = input[2..].split("\n", 2)
-      numbers = numbers_str.split(delimiter).map(&:to_i)
+      numbers = numbers_str.split(delimiter).map(&:to_i).reject { |n| n > 1000 }
       return numbers.sum
     end
 
-    numbers = input.split(/[\n,]/).map(&:to_i)
+    numbers = input.split(/[\n,]/).map(&:to_i).reject { |n| n > 1000 }
     numbers.sum
   end
 
