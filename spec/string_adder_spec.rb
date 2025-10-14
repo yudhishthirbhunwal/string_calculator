@@ -28,6 +28,21 @@ RSpec.describe StringAdder do
         end
       end
     end
+
+    context "when given multiple numbers" do
+      context "separated by a comma" do
+        [
+          ["1,2,3", 6],
+          ["31,23,12,  17, 34, 4 , 9", 130]
+        ].each do |input, expected|
+          context "given '#{input}'" do
+            it "returns #{expected}" do
+              expect(StringAdder.add(input)).to eq(expected)
+            end
+          end
+        end
+      end
+    end
   end
   
 end
