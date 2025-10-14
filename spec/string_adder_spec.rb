@@ -16,15 +16,14 @@ RSpec.describe StringAdder do
 
     context "when given two numbers" do
       context "separated by a comma" do
-        context "given '1,2'" do
-          it "returns 3" do
-            expect(StringAdder.add("1,2")).to eq(3)
-          end
-        end
-
-        context "given '31,23'" do
-          it "returns 54" do
-            expect(StringAdder.add("31,23")).to eq(54)
+        [
+          ["1,2", 3],
+          ["31,23", 54]
+        ].each do |input, expected|
+          context "given '#{input}'" do
+            it "returns #{expected}" do
+              expect(StringAdder.add(input)).to eq(expected)
+            end
           end
         end
       end
