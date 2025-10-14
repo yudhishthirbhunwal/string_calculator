@@ -68,6 +68,13 @@ RSpec.describe StringAdder do
           end
         end
       end
+
+      context 'when given negative numbers' do
+        it 'raises an error' do
+          expect { StringAdder.add("1,-2,3") }.to raise_error(ArgumentError, "negatives not allowed: -2")
+          expect { StringAdder.add("1,-2,-5,3") }.to raise_error(ArgumentError, "negatives not allowed: -2, -5")
+        end
+      end
     end
   end
   

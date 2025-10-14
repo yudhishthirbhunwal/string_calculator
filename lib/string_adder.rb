@@ -1,6 +1,10 @@
 class StringAdder
   def self.add(input)
     return 0 if input.empty?
+    if input.match(/-\d+/)
+      negatives = input.scan(/-\d+/).join(", ")
+      raise ArgumentError, "negatives not allowed: #{negatives}"
+    end
 
     if input.start_with?("//")
       delimiter, numbers_str = input[2..].split("\n", 2)
