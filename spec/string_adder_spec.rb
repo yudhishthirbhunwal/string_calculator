@@ -77,5 +77,17 @@ RSpec.describe StringAdder do
       end
     end
   end
+
+  describe ".get_called_count" do
+    it "returns the number of times add was called" do
+      StringAdder.class_variable_set(:@@called_count, 0)
+      expect(StringAdder.get_called_count).to eq(0)
+      StringAdder.add("1,2")
+      expect(StringAdder.get_called_count).to eq(1)
+      StringAdder.add("3,4")
+      StringAdder.add("5,6")
+      expect(StringAdder.get_called_count).to eq(3)
+    end
+  end
   
 end

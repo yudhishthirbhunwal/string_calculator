@@ -1,5 +1,8 @@
 class StringAdder
+  @@called_count = 0
+  
   def self.add(input)
+    @@called_count += 1
     return 0 if input.empty?
     if input.match(/-\d+/)
       negatives = input.scan(/-\d+/).join(", ")
@@ -14,5 +17,9 @@ class StringAdder
 
     numbers = input.split(/[\n,]/).map(&:to_i)
     numbers.sum
+  end
+
+  def self.get_called_count
+    @@called_count
   end
 end
