@@ -42,13 +42,24 @@ RSpec.describe StringAdder do
           end
         end
       end
-    end
 
-    context "when given multiple numbers" do
       context "separated by a new-lines or commas" do
         [
           ["1\n2\n\n3", 6],
           ["31,,,23\n12,  17, 34, 4 , 9", 130]
+        ].each do |input, expected|
+          context "given '#{input}'" do
+            it "returns #{expected}" do
+              expect(StringAdder.add(input)).to eq(expected)
+            end
+          end
+        end
+      end
+
+      context "separated by custom delimiter" do
+        [
+          ["//;\n1;2;3", 6],
+          ["//|\n31|23|12|17|34|4|9", 130]
         ].each do |input, expected|
           context "given '#{input}'" do
             it "returns #{expected}" do
