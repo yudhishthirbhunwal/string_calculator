@@ -97,6 +97,12 @@ RSpec.describe StringAdder do
           expect(StringAdder.add("1001,1002,1003,4")).to eq(4)
         end
       end
+
+      context 'when given an operator as multiply' do
+        it 'returns the product of the numbers' do
+          expect(StringAdder.add("//op:multiply\n1,2,3,4")).to eq(24)
+        end
+      end
     end
   end
 
