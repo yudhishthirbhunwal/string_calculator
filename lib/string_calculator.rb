@@ -10,7 +10,12 @@ class StringCalculator
 
     parsed_input = StringInputParser.parse(input)
 
-    return send(parsed_input[:operator], parsed_input[:delimiters], parsed_input[:numbers_str])
+    case parsed_input[:operator]
+    when "multiply"
+      multiply(parsed_input[:delimiters], parsed_input[:numbers_str])
+    else
+      add(parsed_input[:delimiters], parsed_input[:numbers_str])
+    end
   end
 
   def self.validate(input)

@@ -27,7 +27,7 @@ class StringInputParser
     if input.start_with?("op:")
       return input.split(';', 2)[0][3..]
     end
-    :add
+    nil
   end
 
   def self.get_delimiters(input)
