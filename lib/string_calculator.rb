@@ -1,3 +1,5 @@
+require_relative 'string_input_parser'
+
 class StringCalculator
   @@called_count = 0
 
@@ -6,23 +8,9 @@ class StringCalculator
 
     validate(input)
 
-    if input.start_with?("//")
-      input = input[2..]
+    parsed_input = StringInputParser.parse(input)
 
-      operation_str, numbers_str = input.split("\n", 2)[0], input.split("\n", 2)[1]
-
-      operator = get_operator(operation_str)
-      delimiters = get_delimiters(operation_str)
-
-      case operator
-      when "multiply"
-        return send(:multiply, delimiters, numbers_str)
-      else
-        return send(:add, delimiters, numbers_str)
-      end
-    end
-
-    return send(:add, nil, input)
+    return send(parsed_input[:operator], parsed_input[:delimiters], parsed_input[:numbers_str])
   end
 
   def self.validate(input)
@@ -32,29 +20,6 @@ class StringCalculator
       negatives = input.scan(/-\d+/).join(", ")
       raise ArgumentError, "negatives not allowed: #{negatives}"
     end
-  end
-
-  def self.get_operator(input)
-    if input.start_with?("op:")
-      return input.split(';', 2)[0][3..]
-    end
-    nil
-  end
-
-  def self.get_delimiters(input)
-    if input.start_with?("op:")
-      input = input.split(';', 2)[1]
-    end
-
-    return nil if input.nil? || input.empty?
-
-    if input.start_with?("[") && input.end_with?("]")
-      delimiters = input.scan(/\[[^\]]+\]/).map{|a| a[1..-2]}
-    else
-      delimiters = [input]
-    end
-
-    return delimiters
   end
 
   def self.add(delimiters, numbers_str)
