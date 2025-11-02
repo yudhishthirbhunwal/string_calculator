@@ -68,7 +68,12 @@ class StringCalculator
   end
 
   def self.multiply(delimiters, numbers_str)
-    numbers = numbers_str.split(/[\n,]/).map(&:to_i).reject { |n| n > 1000 }
+    if delimiters.nil?
+      numbers = numbers_str.split(/[\n,]/).map(&:to_i).reject { |n| n > 1000 }
+      return numbers.reduce(1, :*)
+    end
+
+    numbers = numbers_str.split(Regexp.union(*delimiters)).map(&:to_i).reject { |n| n > 1000 }
     return numbers.reduce(1, :*)
   end
 

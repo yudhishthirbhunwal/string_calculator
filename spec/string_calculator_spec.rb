@@ -105,6 +105,11 @@ RSpec.describe StringCalculator do
       expect(StringCalculator.calculate("//op:multiply\n2,3,4")).to eq(24)
       expect(StringCalculator.calculate("//op:multiply\n5,5,5")).to eq(125)
     end
+
+    it "returns the product of the numbers with custom delimiter" do
+      expect(StringCalculator.calculate("//op:multiply;[*][&]\n2*3&4")).to eq(24)
+      expect(StringCalculator.calculate("//op:multiply;[;]\n5;5;5")).to eq(125)
+    end
   end
   
 
