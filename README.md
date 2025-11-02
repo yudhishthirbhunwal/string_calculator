@@ -51,17 +51,33 @@ bundle exec rspec --format=documentation
 
 ## Implementation Highlights
 
+- Clean separation of concerns (parsing vs calculation)
 - Input validation and error handling
 - Regular expression pattern matching
 - String manipulation
 - Exception handling
 - Method call tracking
+- Modular code design
 
 ## Code Structure
 
 - `lib/string_calculator.rb` - Main calculator implementation
+- `lib/string_input_parser.rb` - Input parsing logic
 - `spec/string_calculator_spec.rb` - Test suite
 - `spec/spec_helper.rb` - RSpec configuration
+
+### Design Principles
+
+This project follows SOLID principles:
+
+1. **Single Responsibility Principle (SRP)**
+   - Separated input parsing (`StringInputParser`) from calculation logic (`StringCalculator`)
+   - Each class has a clear, focused purpose
+
+2. **Code Organization**
+   - Input parsing is handled by `StringInputParser`
+   - Core calculation logic remains in `StringCalculator`
+   - Clear separation of concerns for better maintainability
 
 ## Key Learnings
 
@@ -71,6 +87,9 @@ bundle exec rspec --format=documentation
 - Refactor only when tests are green
 - Keep track of edge cases
 - Write readable, maintainable tests
+- Apply SOLID principles for better code organization
+- Separate concerns for improved maintainability
+- Use modular design for better code structure
 
 ## Getting Started
 
