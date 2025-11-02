@@ -1,4 +1,4 @@
-class StringAdder
+class StringCalculator
   @@called_count = 0
   
   def self.add(input)

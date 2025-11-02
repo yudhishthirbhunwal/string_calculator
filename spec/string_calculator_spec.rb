@@ -1,16 +1,16 @@
-require "string_adder"
+require "string_calculator"
 
-RSpec.describe StringAdder do
+RSpec.describe StringCalculator do
   describe ".add" do
     context "when given an empty string" do
       it "returns 0" do
-        expect(StringAdder.add("")).to eq(0)
+        expect(StringCalculator.add("")).to eq(0)
       end
     end
     
     context "when given a single number" do
       it "returns that number" do
-        expect(StringAdder.add("5")).to eq(5)
+        expect(StringCalculator.add("5")).to eq(5)
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe StringAdder do
         ].each do |input, expected|
           context "given '#{input}'" do
             it "returns #{expected}" do
-              expect(StringAdder.add(input)).to eq(expected)
+              expect(StringCalculator.add(input)).to eq(expected)
             end
           end
         end
@@ -37,7 +37,7 @@ RSpec.describe StringAdder do
         ].each do |input, expected|
           context "given '#{input}'" do
             it "returns #{expected}" do
-              expect(StringAdder.add(input)).to eq(expected)
+              expect(StringCalculator.add(input)).to eq(expected)
             end
           end
         end
@@ -50,7 +50,7 @@ RSpec.describe StringAdder do
         ].each do |input, expected|
           context "given '#{input}'" do
             it "returns #{expected}" do
-              expect(StringAdder.add(input)).to eq(expected)
+              expect(StringCalculator.add(input)).to eq(expected)
             end
           end
         end
@@ -64,7 +64,7 @@ RSpec.describe StringAdder do
         ].each do |input, expected|
           context "given '#{input}'" do
             it "returns #{expected}" do
-              expect(StringAdder.add(input)).to eq(expected)
+              expect(StringCalculator.add(input)).to eq(expected)
             end
           end
         end
@@ -78,7 +78,7 @@ RSpec.describe StringAdder do
         ].each do |input, expected|
           context "given '#{input}'" do
             it "returns #{expected}" do
-              expect(StringAdder.add(input)).to eq(expected)
+              expect(StringCalculator.add(input)).to eq(expected)
             end
           end
         end
@@ -86,21 +86,21 @@ RSpec.describe StringAdder do
 
       context 'when given negative numbers' do
         it 'raises an error' do
-          expect { StringAdder.add("1,-2,3") }.to raise_error(ArgumentError, "negatives not allowed: -2")
-          expect { StringAdder.add("1,-2,-5,3") }.to raise_error(ArgumentError, "negatives not allowed: -2, -5")
+          expect { StringCalculator.add("1,-2,3") }.to raise_error(ArgumentError, "negatives not allowed: -2")
+          expect { StringCalculator.add("1,-2,-5,3") }.to raise_error(ArgumentError, "negatives not allowed: -2, -5")
         end
       end
 
       context 'when given numbers greater than 1000' do
         it 'ignores them' do
-          expect(StringAdder.add("2,1001")).to eq(2)
-          expect(StringAdder.add("1001,1002,1003,4")).to eq(4)
+          expect(StringCalculator.add("2,1001")).to eq(2)
+          expect(StringCalculator.add("1001,1002,1003,4")).to eq(4)
         end
       end
 
       context 'when given an operator as multiply' do
         it 'returns the product of the numbers' do
-          expect(StringAdder.add("//op:multiply\n1,2,3,4")).to eq(24)
+          expect(StringCalculator.add("//op:multiply\n1,2,3,4")).to eq(24)
         end
       end
     end
@@ -108,13 +108,13 @@ RSpec.describe StringAdder do
 
   describe ".get_called_count" do
     it "returns the number of times add was called" do
-      StringAdder.class_variable_set(:@@called_count, 0)
-      expect(StringAdder.get_called_count).to eq(0)
-      StringAdder.add("1,2")
-      expect(StringAdder.get_called_count).to eq(1)
-      StringAdder.add("3,4")
-      StringAdder.add("5,6")
-      expect(StringAdder.get_called_count).to eq(3)
+      StringCalculator.class_variable_set(:@@called_count, 0)
+      expect(StringCalculator.get_called_count).to eq(0)
+      StringCalculator.add("1,2")
+      expect(StringCalculator.get_called_count).to eq(1)
+      StringCalculator.add("3,4")
+      StringCalculator.add("5,6")
+      expect(StringCalculator.get_called_count).to eq(3)
     end
   end
   

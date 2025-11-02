@@ -59,8 +59,8 @@ bundle exec rspec --format=documentation
 
 ## Code Structure
 
-- `lib/string_adder.rb` - Main calculator implementation
-- `spec/string_adder_spec.rb` - Test suite
+- `lib/string_calculator.rb` - Main calculator implementation
+- `spec/string_calculator_spec.rb` - Test suite
 - `spec/spec_helper.rb` - RSpec configuration
 
 ## Key Learnings
@@ -77,9 +77,9 @@ bundle exec rspec --format=documentation
 1. Clone the repository
 2. Run `bundle install`
 3. Run the tests with `bundle exec rspec`
-4. Try adding new test cases in `spec/string_adder_spec.rb`
+4. Try adding new test cases in `spec/string_calculator_spec.rb`
 5. Watch them fail (Red)
-6. Implement the feature in `lib/string_adder.rb`
+6. Implement the feature in `lib/string_calculator.rb`
 7. Watch them pass (Green)
 8. Refactor if needed
 
