@@ -8,19 +8,19 @@ class StringInputParser
       operator = get_operator(operation_str)
       delimiters = get_delimiters(operation_str)
 
-      return {
-        operator: operator,
-        delimiters: delimiters,
-        numbers_str: numbers_str
-      }
+      return output(numbers_str, operator, delimiters)
     else
-      return {
-        operator: :add,
-        delimiters: nil,
-        numbers_str: input
-      }
+      return output(input)
     end
     
+  end
+
+  def self.output(numbers_str = "", operation_str = :add, delimiters = nil)
+    {
+      operator: operation_str,
+      delimiters: delimiters,
+      numbers_str: numbers_str
+    }
   end
 
   def self.get_operator(input)
